@@ -1,0 +1,344 @@
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Concorrentes
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .blurred {
+            filter: blur(4px);
+            transition: filter 0.3s;
+        }
+        .focused {
+            filter: blur(0);
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 10;
+            top: 125%; /* Position the tooltip below the button */
+            left: 50%;
+            margin-left: -110px; /* Use half of the width (220/2 = 110), to center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            bottom: 100%; /* At the top of the tooltip */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #555 transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+  </style>
+ </head>
+ <body class="bg-[#f3f4f6] text-gray-800">
+  <div class="container mx-auto p-4">
+   <div class="flex justify-between items-center mb-4">
+    <h1 class="text-3xl font-bold text-center text-red-900">
+     Concorrentes
+    </h1>
+    <div class="tooltip">
+     <button class="bg-red-900 text-white px-4 py-2 rounded-md" id="focusModeBtn">
+      Modo Foco
+     </button>
+     <span class="tooltiptext">
+      Ative para destacar o projeto em foco e desfocar os demais
+     </span>
+    </div>
+   </div>
+   <div class="flex justify-center mb-4">
+    <button class="bg-red-900 text-white px-4 py-2 rounded-md mx-2" id="valinhosBtn">
+     Valinhos
+    </button>
+    <button class="bg-red-900 text-white px-4 py-2 rounded-md mx-2" id="campinasBtn">
+     Campinas
+    </button>
+   </div>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="concorrentes">
+    <!-- Concorrentes de Valinhos -->
+    <div class="concorrente valinhos bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+     <div class="bg-red-900 h-2 rounded-t-lg">
+     </div>
+     <div class="p-4">
+      <span class="text-lg font-semibold text-gray-600">
+       Valinhos
+      </span>
+      <h2 class="text-2xl font-bold text-red-900 mb-2">
+       Concorrente 1
+      </h2>
+      <img alt="Imagem de um concorrente de Valinhos com um prédio moderno ao fundo" class="w-full h-48 object-cover rounded-md mb-4" height="400" src="https://storage.googleapis.com/a1aa/image/jbtQZ6iVqBr7FpAB45Iuf9y33ANlfRy6rYErhwTGUfeMmk5PB.jpg" width="600"/>
+      <h3 class="text-xl font-semibold text-green-600 mt-4">
+       Pontos Positivos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 2
+       </p>
+      </div>
+      <h3 class="text-xl font-semibold text-red-600 mt-4">
+       Pontos Negativos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 2
+       </p>
+      </div>
+      <p class="mt-4 text-gray-700">
+       Público-alvo: Jovens profissionais e famílias que buscam um ambiente moderno e seguro.
+      </p>
+     </div>
+    </div>
+    <div class="concorrente valinhos bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+     <div class="bg-red-900 h-2 rounded-t-lg">
+     </div>
+     <div class="p-4">
+      <span class="text-lg font-semibold text-gray-600">
+       Valinhos
+      </span>
+      <h2 class="text-2xl font-bold text-red-900 mb-2">
+       Concorrente 2
+      </h2>
+      <img alt="Imagem de um concorrente de Valinhos com um parque ao fundo" class="w-full h-48 object-cover rounded-md mb-4" height="400" src="https://storage.googleapis.com/a1aa/image/Dgm9uQ8SWCI9NdjBg8Fp7ykIQSpgS9yrkV9Vu4zCjVWYSmfJA.jpg" width="600"/>
+      <h3 class="text-xl font-semibold text-green-600 mt-4">
+       Pontos Positivos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 2
+       </p>
+      </div>
+      <h3 class="text-xl font-semibold text-red-600 mt-4">
+       Pontos Negativos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 2
+       </p>
+      </div>
+      <p class="mt-4 text-gray-700">
+       Público-alvo: Famílias que buscam proximidade com a natureza e atividades ao ar livre.
+      </p>
+     </div>
+    </div>
+    <!-- Concorrentes de Campinas -->
+    <div class="concorrente campinas bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow text-center hidden">
+     <div class="bg-red-900 h-2 rounded-t-lg">
+     </div>
+     <div class="p-4">
+      <span class="text-lg font-semibold text-gray-600">
+       Campinas
+      </span>
+      <h2 class="text-2xl font-bold text-red-900 mb-2">
+       Concorrente 1
+      </h2>
+      <img alt="Imagem de um concorrente de Campinas com um centro comercial ao fundo" class="w-full h-48 object-cover rounded-md mb-4" height="400" src="https://storage.googleapis.com/a1aa/image/GQiO0ysy94IWA5oPUH4xKeOhYqjZY2ARHQW1W9TieZGmJZenA.jpg" width="600"/>
+      <h3 class="text-xl font-semibold text-green-600 mt-4">
+       Pontos Positivos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 2
+       </p>
+      </div>
+      <h3 class="text-xl font-semibold text-red-600 mt-4">
+       Pontos Negativos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 2
+       </p>
+      </div>
+      <p class="mt-4 text-gray-700">
+       Público-alvo: Profissionais que buscam conveniência e proximidade com centros comerciais.
+      </p>
+     </div>
+    </div>
+    <div class="concorrente campinas bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow text-center hidden">
+     <div class="bg-red-900 h-2 rounded-t-lg">
+     </div>
+     <div class="p-4">
+      <span class="text-lg font-semibold text-gray-600">
+       Campinas
+      </span>
+      <h2 class="text-2xl font-bold text-red-900 mb-2">
+       Concorrente 2
+      </h2>
+      <img alt="Imagem de um concorrente de Campinas com um parque tecnológico ao fundo" class="w-full h-48 object-cover rounded-md mb-4" height="400" src="https://storage.googleapis.com/a1aa/image/9gDf7xq9pswBQa7YeXzeeVL2n1RCBbLRAJ7lkvInp9IXmk5PB.jpg" width="600"/>
+      <h3 class="text-xl font-semibold text-green-600 mt-4">
+       Pontos Positivos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-check-circle text-green-500 mr-2">
+        </i>
+        Ponto positivo 2
+       </p>
+      </div>
+      <h3 class="text-xl font-semibold text-red-600 mt-4">
+       Pontos Negativos
+      </h3>
+      <div class="space-y-2">
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 1
+       </p>
+       <p class="flex items-center justify-center">
+        <i class="fas fa-times-circle text-red-500 mr-2">
+        </i>
+        Ponto negativo 2
+       </p>
+      </div>
+      <p class="mt-4 text-gray-700">
+       Público-alvo: Profissionais de tecnologia e inovação que buscam um ambiente de trabalho dinâmico.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   document.getElementById('valinhosBtn').addEventListener('click', function() {
+            document.querySelectorAll('.concorrente').forEach(function(el) {
+                el.classList.add('hidden');
+            });
+            document.querySelectorAll('.valinhos').forEach(function(el) {
+                el.classList.remove('hidden');
+                el.classList.add('fade-in');
+            });
+        });
+
+        document.getElementById('campinasBtn').addEventListener('click', function() {
+            document.querySelectorAll('.concorrente').forEach(function(el) {
+                el.classList.add('hidden');
+            });
+            document.querySelectorAll('.campinas').forEach(function(el) {
+                el.classList.remove('hidden');
+                el.classList.add('fade-in');
+            });
+        });
+
+        let focusMode = false;
+        document.getElementById('focusModeBtn').addEventListener('click', function() {
+            focusMode = !focusMode;
+            if (focusMode) {
+                this.classList.remove('bg-red-900');
+                this.classList.add('bg-green-500');
+                document.querySelectorAll('.concorrente').forEach(function(el) {
+                    el.classList.add('blurred');
+                });
+            } else {
+                this.classList.remove('bg-green-500');
+                this.classList.add('bg-red-900');
+                document.querySelectorAll('.concorrente').forEach(function(el) {
+                    el.classList.remove('blurred');
+                });
+            }
+        });
+
+        document.querySelectorAll('.concorrente').forEach(function(el) {
+            el.addEventListener('mouseover', function() {
+                if (focusMode) {
+                    document.querySelectorAll('.concorrente').forEach(function(el) {
+                        el.classList.add('blurred');
+                    });
+                    this.classList.remove('blurred');
+                    this.classList.add('focused');
+                }
+            });
+            el.addEventListener('mouseout', function() {
+                if (focusMode) {
+                    document.querySelectorAll('.concorrente').forEach(function(el) {
+                        el.classList.remove('focused');
+                    });
+                }
+            });
+        });
+  </script>
+ </body>
+</html>
