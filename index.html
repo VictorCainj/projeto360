@@ -3,6 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Projeto 360</title>
+    <link rel="icon" href="https://i.imgur.com/qQIZtc2.png" type="image/png"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
@@ -74,12 +75,6 @@
         .reminder.hidden {
             opacity: 0;
         }
-        .blurred {
-            filter: blur(5px);
-        }
-        .focused {
-            filter: none;
-        }
         .tooltip {
             position: relative;
             display: inline-block;
@@ -114,172 +109,57 @@
                 <select class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4" id="selectPerson">
                     <option value="">Selecione um nome...</option>
                     <option value="Cintia">Cintia</option>
-                    <option value="Dayana">Dayana</option>
-                    <option value="Lilian">Lilian</option>
-                    <option value="Elaine">Elaine</option>
-                    <option value="Camila">Camila</option>
-                    <option value="Victor">Victor</option>
-                    <option value="Juan">Juan</option>
-                    <option value="Gabi">Gabi</option>
-                    <option value="Natalia">Natalia</option>
-                    <option value="Silvana">Silvana</option>
                 </select>
                 <select class="w-full md:w-64 p-3 border border-gray-300 rounded" id="selectMeeting">
                     <option value="">Selecione uma reunião...</option>
                     <option value="15/01/2025">Reunião dia 15/01/2025</option>
                     <option value="22/12/2024">Reunião dia 22/12/2024</option>
                 </select>
-                <div class="tooltip">
-                    <button id="focusToggle" class="ml-4 bg-red-900 text-white px-4 py-2 rounded focus:outline-none">
-                        <i class="fas fa-eye"></i> Modo Foco
-                    </button>
-                    <span class="tooltiptext">Ative para destacar o projeto em foco e desfocar os demais.</span>
-                </div>
             </div>
         </header>
         <div id="meetingDescription" class="meeting-description hidden mb-12 text-center text-lg font-semibold text-gray-800 bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-900">
             <h3 id="meetingTitle" class="text-2xl font-bold text-red-900 mb-4"></h3>
-            <div id="meetingDetails" class="text-base text-gray-600 mt-2 text-center"></div>
+            <div id="meetingDetails" class="text-base text-gray-600 mt-2 text-center">Hello World</div>
         </div>
         <div id="reminder" class="reminder mb-12 text-center text-lg font-semibold text-gray-800 bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-900">
             <p>As reuniões ocorrem toda terça-feira e quinta-feira, com duração de 1 hora.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in" id="tasksContainer">
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Gabi">
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Desocupação</span>
-                        <img alt="Imagem de perfil de Gabi sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/v4MG2k4.jpeg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Gabi</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Cartão de Benefícios para Locadores</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em breve</p>
-                    <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="#" target="_blank"><i class="fas fa-ban mr-2"></i>Projeto Indisponível</a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Victor">
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Manutenção</span>
-                        <img alt="Imagem de perfil de Victor sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/9MN7p96.jpeg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Victor</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Blog Interativo da Imobiliária</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em Breve</p>
-                    <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="#" target="_blank"><i class="fas fa-ban mr-2"></i>Projeto Indisponível</a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Carlos">
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Financeiro</span>
-                        <img alt="Imagem de perfil de Dayana sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/b6oYSco3cgKZDZhRCadm1l9AwwULLQKf1HdPB6K6Mf3q5RenA.jpg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Dayana</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Administração de condomínio</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em Breve</p>
-                    <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="#" target="_blank"><i class="fas fa-ban mr-2"></i>Projeto Indisponível</a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Carlos">
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Manutenção</span>
-                        <img alt="Imagem de perfil de Carlos sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/tcqzjVa.jpeg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Juan</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Melhorando o Marketing Digital</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em Breve.</p>
-                    <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="#" target="_blank"><i class="fas fa-ban mr-2"></i>Projeto Indisponível</a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Carlos">
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Posse</span>
-                        <img alt="Imagem de perfil de Carlos sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/bQ02pXv.jpeg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Lilian</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Criação de um portfólio da Madia para apresentar em assembléias de condomínios</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em Breve</p>
-                    <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="#" target="_blank"><i class="fas fa-ban mr-2"></i>Projeto Indisponível</a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Carlos">
+            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Cintia">
                 <div class="zoom-background bg-gray-100"></div>
                 <div class="task-content">
                     <div class="flex flex-col items-center mb-6">
                         <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Supervisão</span>
-                        <img alt="Imagem de perfil de Carlos sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
+                        <img alt="Imagem de perfil de Cintia sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
                         <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Cintia</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Criar um perfil do locador e realizar uma análise de mercado mapeando a concorrência e traçando seus pontos fortes e fracos.</p>
+                            <h2 class="text-2xl font-bold text-red-900 mb-2"><i class="fas fa-user mr-2"></i>Cintia</h2>
+                            <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Criar um perfil do locador e realizar uma análise de mercado mapeando a concorrência e traçando seus pontos fortes e fracos.</p>
                         </div>
                     </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em Breve</p>
+                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800"><i class="fas fa-info-circle mr-2"></i>Descrição:</span> Em Breve</p>
                     <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="ProjetoCintia1" target="_blank">
+                        <a class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300" href="ProjetoCintia1" target="_blank">
                             <i class="fas fa-check mr-2"></i>Projeto Disponível
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Carlos">
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Renovação</span>
-                        <img alt="Imagem de perfil de Carlos sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/b6oYSco3cgKZDZhRCadm1l9AwwULLQKf1HdPB6K6Mf3q5RenA.jpg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Natalia</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Criação de um kit de boas vindas para os locadores.</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em Breve</p>
-                    <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="#" target="_blank"><i class="fas fa-ban mr-2"></i>Projeto Indisponível</a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Carlos">
+            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Cintia">
                 <div class="zoom-background bg-gray-100"></div>
                 <div class="task-content">
                     <div class="flex flex-col items-center mb-6">
                         <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Supervisão</span>
-                        <img alt="Imagem de perfil de Carlos sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
+                        <img alt="Imagem de perfil de Cintia sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
                         <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2">Cintia</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800">Projeto:</span> Realizar eventos para locadores</p>
+                            <h2 class="text-2xl font-bold text-red-900 mb-2"><i class="fas fa-user mr-2"></i>Cintia</h2>
+                            <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Realizar eventos para locadores</p>
                         </div>
                     </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800">Descrição:</span> Em Breve</p>
+                    <p class="mb-6 text-center text-lg font-semibold text-muted"><span class="font-bold text-gray-800"><i class="fas fa-info-circle mr-2"></i>Descrição:</span> Em Breve</p>
                     <div class="text-center">
-                        <a class="text-white bg-red-900 font-bold py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300" href="#" target="_blank"><i class="fas fa-ban mr-2"></i>Projeto Indisponível</a>
+                        <a class="text-white bg-red-600 font-bold py-2 px-4 rounded hover:bg-red-500 transition-colors duration-300" href="#" target="_blank">
+                            <i class="fas fa-ban mr-2"></i>Projeto Indisponível
+                        </a>
                     </div>
                 </div>
             </div>
@@ -290,27 +170,8 @@
     </div>
     <script>
         const meetingData = {
-            '15/01/2025': `
-                <strong>Assunto tratado:</strong> Revisão de metas e objetivos do primeiro trimestre.
-                <ul class="list-disc list-inside mt-2 text-left">
-                    <li><strong>Progresso das Metas:</strong> Avaliamos o progresso das metas estabelecidas para o primeiro trimestre.</li>
-                    <li><strong>Desafios e Oportunidades:</strong> Identificamos desafios enfrentados e oportunidades a serem exploradas.</li>
-                    <li><strong>Ajustes de Estratégias:</strong> Ajustamos as estratégias conforme necessário para garantir o cumprimento das metas.</li>
-                    <li><strong>Novas Ferramentas de Produtividade:</strong> Discutimos a implementação de novas ferramentas para aumentar a produtividade.</li>
-                    <li><strong>Otimização de Processos:</strong> Planejamos a otimização dos processos internos para melhorar a eficiência.</li>
-                    <li><strong>Responsabilidade Social:</strong> Abordamos iniciativas de responsabilidade social e planos de engajamento com a comunidade.</li>
-                </ul>
-            `,
-            '22/12/2024': `
-                <strong>Tempo do Projeto:</strong> 1 ano.
-                <ul class="list-disc list-inside mt-2 text-left">
-                    <li><strong>Definir com o time quem serão os participantes:</strong> NOMES AQUI.</li>
-                    <li><strong>Criação de um grupo no WhatsApp exclusivo do projeto:</strong> Será criado um grupo para facilitar a comunicação e o acompanhamento das atividades.</li>
-                    <li><strong>Definir com o time as regras do projeto:</strong> As regras serão discutidas e estabelecidas para garantir o bom andamento do projeto.</li>
-                    <li><strong>Terça e Quinta (16h) será o tempo dedicado ao projeto:</strong> Esses dias e horários serão reservados para o trabalho e discussão do projeto.</li>
-                    <li><strong>Definir com o time quem fará a pesquisa da concorrência e quem fará a análise do perfil do locador:</strong> Divisão de tarefas para garantir que todos os aspectos importantes sejam abordados.</li>
-                </ul>
-            `
+            '15/01/2025': 'Hello World',
+            '22/12/2024': 'Hello World'
         };
 
         const selectPerson = document.getElementById('selectPerson');
@@ -320,8 +181,6 @@
         const meetingTitle = document.getElementById('meetingTitle');
         const reminder = document.getElementById('reminder');
         const tasksContainer = document.getElementById('tasksContainer');
-        const focusToggle = document.getElementById('focusToggle');
-        let focusMode = false;
 
         selectPerson.addEventListener('change', function() {
             const selectedPerson = this.value;
@@ -346,44 +205,6 @@
         setTimeout(() => {
             reminder.classList.add('hidden');
         }, 5000);
-
-        focusToggle.addEventListener('click', function() {
-            focusMode = !focusMode;
-            focusToggle.classList.toggle('bg-green-700', focusMode);
-            focusToggle.classList.toggle('bg-red-900', !focusMode);
-            document.querySelectorAll('.task, .meeting-description').forEach(element => {
-                element.classList.toggle('blurred', focusMode);
-            });
-        });
-
-        document.addEventListener('mouseover', function(event) {
-            if (focusMode) {
-                if (event.target.closest('.task')) {
-                    document.querySelectorAll('.task, .meeting-description').forEach(element => {
-                        element.classList.add('blurred');
-                    });
-                    event.target.closest('.task').classList.remove('blurred');
-                    event.target.closest('.task').classList.add('focused');
-                } else if (event.target.closest('.meeting-description')) {
-                    document.querySelectorAll('.task, .meeting-description').forEach(element => {
-                        element.classList.add('blurred');
-                    });
-                    event.target.closest('.meeting-description').classList.remove('blurred');
-                    event.target.closest('.meeting-description').classList.add('focused');
-                }
-            }
-        });
-
-        document.addEventListener('mouseout', function(event) {
-            if (focusMode) {
-                if (event.target.closest('.task') || event.target.closest('.meeting-description')) {
-                    document.querySelectorAll('.task, .meeting-description').forEach(element => {
-                        element.classList.add('blurred');
-                        element.classList.remove('focused');
-                    });
-                }
-            }
-        });
     </script>
 </body>
 </html>
