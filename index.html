@@ -110,21 +110,32 @@
             border-radius: 0.25rem;
             z-index: 3;
         }
+        .navbar {
+            background-color: #7b1c1c;
+            color: white;
+            padding: 1rem;
+            text-align: right;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 1rem;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-roboto">
+    <div class="navbar">
+        <a href="reuniao.html"><i class="fas fa-calendar-alt mr-2"></i>Reuniões</a>
+        <a href="sobre-nos.html"><i class="fas fa-info-circle mr-2"></i>Sobre Nós</a>
+    </div>
     <div class="container mx-auto p-6">
-        <header class="mb-12 flex flex-col md:flex-row justify-between items-center fade-in">
-            <h1 class="text-4xl font-bold text-red-900 text-center md:text-left">Projeto 360</h1>
-            <div class="text-center md:text-right mt-4 md:mt-0">
+        <header class="mb-12 flex flex-col justify-center items-center fade-in">
+            <h1 class="text-4xl font-bold text-red-900 text-center">Projeto 360</h1>
+            <div class="text-center mt-4">
                 <select class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4" id="selectPerson">
                     <option value="">Selecione um nome...</option>
                     <option value="Cintia">Cintia</option>
-                </select>
-                <select class="w-full md:w-64 p-3 border border-gray-300 rounded" id="selectMeeting">
-                    <option value="">Selecione uma reunião...</option>
-                    <option value="15/01/2025">Reunião dia 15/01/2025</option>
-                    <option value="22/12/2024">Reunião dia 22/12/2024</option>
                 </select>
             </div>
         </header>
@@ -188,7 +199,6 @@
         };
 
         const selectPerson = document.getElementById('selectPerson');
-        const selectMeeting = document.getElementById('selectMeeting');
         const meetingDescription = document.getElementById('meetingDescription');
         const meetingDetails = document.getElementById('meetingDetails');
         const meetingTitle = document.getElementById('meetingTitle');
@@ -200,21 +210,6 @@
             document.querySelectorAll('.task').forEach(task => {
                 task.style.display = selectedPerson === '' || task.getAttribute('data-person') === selectedPerson ? 'block' : 'none';
             });
-        });
-
-        selectMeeting.addEventListener('change', function() {
-            const selectedMeeting = this.value;
-            if (selectedMeeting) {
-                meetingDescription.classList.remove('hidden');
-                meetingDescription.classList.add('visible');
-                meetingTitle.textContent = `Reunião dia ${selectedMeeting}`;
-                meetingDetails.innerHTML = meetingData[selectedMeeting];
-                reminder.classList.remove('hidden');
-            } else {
-                meetingDescription.classList.remove('visible');
-                meetingDescription.classList.add('hidden');
-                reminder.classList.add('hidden');
-            }
         });
 
         setTimeout(() => {
