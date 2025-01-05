@@ -34,6 +34,8 @@
             perspective: 1000px;
             position: relative;
             overflow: hidden;
+            max-width: 350px;
+            margin: auto;
         }
         .task-content {
             transition: filter 0.3s;
@@ -56,24 +58,6 @@
         }
         .text-muted {
             color: #6b7280;
-        }
-        .meeting-description {
-            transition: transform 0.3s, opacity 0.3s;
-            transform-style: preserve-3d;
-        }
-        .meeting-description.hidden {
-            transform: translateZ(-20px);
-            opacity: 0;
-        }
-        .meeting-description.visible {
-            transform: translateZ(0);
-            opacity: 1;
-        }
-        .reminder {
-            transition: opacity 0.5s;
-        }
-        .reminder.hidden {
-            opacity: 0;
         }
         .tooltip {
             position: relative;
@@ -133,6 +117,7 @@
             text-align: center;
             padding: 1rem;
             margin-top: 2rem;
+            width: 100%;
         }
     </style>
 </head>
@@ -156,13 +141,6 @@
                 </select>
             </div>
         </header>
-        <div id="meetingDescription" class="meeting-description hidden mb-12 text-center text-lg font-semibold text-gray-800 bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-900">
-            <h3 id="meetingTitle" class="text-2xl font-bold text-red-900 mb-4"></h3>
-            <div id="meetingDetails" class="text-base text-gray-600 mt-2 text-center">Hello World</div>
-        </div>
-        <div id="reminder" class="reminder hidden mb-12 text-center text-lg font-semibold text-gray-800 bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-900">
-            <p><i class="fas fa-info-circle mr-2"></i>As reuniões ocorrem toda terça-feira e quinta-feira, com duração de 1 hora.</p>
-        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in" id="tasksContainer">
             <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Cintia">
                 <div class="project-number">Projeto #1</div>
@@ -173,7 +151,7 @@
                         <img alt="Imagem de perfil de Cintia sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
                         <div class="text-center">
                             <h2 class="text-2xl font-bold text-red-900 mb-2"><i class="fas fa-user mr-2"></i>Cintia</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Criar um perfil do locador e realizar uma análise de mercado mapeando a concorrência e traçando seus pontos fortes e fracos.</p>
+                            <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Pesquisa de Campo.</p>
                         </div>
                     </div>
                     <p class="mb-6 text-center text-lg font-semibold text-gray-600"><span class="font-bold text-gray-800"><i class="fas fa-info-circle mr-2"></i>Descrição:</span> Criar um perfil do locador e realizar uma análise de mercado mapeando a concorrência e traçando seus pontos fortes e fracos.</p>
@@ -225,10 +203,10 @@
                 </div>
             </div>
         </div>
-		    <footer class="footer">
+    </div>
+    <footer class="footer">
         <p>&copy; 2023 Madia Imóveis. Todos os direitos reservados.</p>
     </footer>
-    </div>
     <script>
         const selectPerson = document.getElementById('selectPerson');
         const tasksContainer = document.getElementById('tasksContainer');
