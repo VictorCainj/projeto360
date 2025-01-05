@@ -1,0 +1,166 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Projeto 360</title>
+    <link rel="icon" href="https://i.imgur.com/qQIZtc2.png" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .fade-out {
+            animation: fadeOut 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        .text-muted {
+            color: #6b7280;
+        }
+        .meeting-description {
+            transition: transform 0.3s, opacity 0.3s;
+            transform-style: preserve-3d;
+        }
+        .meeting-description.hidden {
+            transform: translateZ(-20px);
+            opacity: 0;
+        }
+        .meeting-description.visible {
+            transform: translateZ(0);
+            opacity: 1;
+        }
+        .reminder {
+            transition: opacity 0.5s;
+        }
+        .reminder.hidden {
+            opacity: 0;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 10; /* Ensure it overlays other content */
+            top: 125%; /* Position the tooltip below the text */
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .navbar {
+            background-color: #7b1c1c;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 1rem;
+        }
+        .navbar img {
+            height: 40px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-roboto">
+    <div class="navbar">
+        <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" alt="Logo da Madia Imóveis 40 anos">
+        <div>
+            <a href="projetos.html"><i class="fas fa-calendar-alt mr-2"></i>Projetos</a>
+            <a href="sobre-nos.html"><i class="fas fa-info-circle mr-2"></i>Sobre Nós</a>
+        </div>
+    </div>
+    <div class="container mx-auto p-6">
+        <header class="mb-12 flex flex-col justify-center items-center fade-in">
+            <h1 class="text-4xl font-bold text-red-900 text-center">Projeto 360</h1>
+        </header>
+        <div class="text-center mt-4">
+            <select class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4" id="selectMeeting">
+                <option value="">Selecione uma reunião...</option>
+                <option value="15/01/2025">Reunião dia 15/01/2025</option>
+                <option value="22/12/2024">Reunião dia 22/12/2024</option>
+            </select>
+        </div>
+        <div id="meetingDescription" class="meeting-description hidden mb-12 text-center text-lg font-semibold text-gray-800 bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-900">
+            <h3 id="meetingTitle" class="text-2xl font-bold text-red-900 mb-4"></h3>
+            <div id="meetingDetails" class="text-base text-gray-600 mt-2 text-center"></div>
+        </div>
+    </div>
+    <script>
+        const meetingData = {
+            '15/01/2025': `
+                <strong>Assunto tratado:</strong> Revisão de metas e objetivos do primeiro trimestre.
+                <ul class="list-disc list-inside mt-2 text-left">
+                    <li><strong>Progresso das Metas:</strong> Avaliamos o progresso das metas estabelecidas para o primeiro trimestre.</li>
+                    <li><strong>Desafios e Oportunidades:</strong> Identificamos desafios enfrentados e oportunidades a serem exploradas.</li>
+                    <li><strong>Ajustes de Estratégias:</strong> Ajustamos as estratégias conforme necessário para garantir o cumprimento das metas.</li>
+                    <li><strong>Novas Ferramentas de Produtividade:</strong> Discutimos a implementação de novas ferramentas para aumentar a produtividade.</li>
+                    <li><strong>Otimização de Processos:</strong> Planejamos a otimização dos processos internos para melhorar a eficiência.</li>
+                    <li><strong>Responsabilidade Social:</strong> Abordamos iniciativas de responsabilidade social e planos de engajamento com a comunidade.</li>
+                </ul>
+            `,
+            '22/12/2024': `
+                <strong>Assunto tratado:</strong> Planejamento anual e definição de metas.
+                <ul class="list-disc list-inside mt-2 text-left">
+                    <li><strong>Definição de Metas:</strong> Estabelecemos metas para o próximo ano.</li>
+                    <li><strong>Planejamento de Projetos:</strong> Planejamos os principais projetos a serem executados.</li>
+                    <li><strong>Alocação de Recursos:</strong> Discutimos a alocação de recursos para os projetos.</li>
+                    <li><strong>Calendário de Reuniões:</strong> Definimos o calendário de reuniões para o próximo ano.</li>
+                    <li><strong>Treinamentos e Capacitações:</strong> Planejamos treinamentos e capacitações para a equipe.</li>
+                    <li><strong>Iniciativas de Inovação:</strong> Discutimos iniciativas de inovação e melhorias contínuas.</li>
+                </ul>
+            `
+        };
+
+        const selectMeeting = document.getElementById('selectMeeting');
+        const meetingDescription = document.getElementById('meetingDescription');
+        const meetingDetails = document.getElementById('meetingDetails');
+        const meetingTitle = document.getElementById('meetingTitle');
+
+        selectMeeting.addEventListener('change', function() {
+            const selectedMeeting = this.value;
+            if (selectedMeeting) {
+                meetingDescription.classList.remove('hidden');
+                meetingDescription.classList.add('visible');
+                meetingTitle.textContent = `Reunião dia ${selectedMeeting}`;
+                meetingDetails.innerHTML = meetingData[selectedMeeting];
+            } else {
+                meetingDescription.classList.remove('visible');
+                meetingDescription.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
