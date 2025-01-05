@@ -99,6 +99,17 @@
             visibility: visible;
             opacity: 1;
         }
+        .project-number {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(0, 0, 0, 0.1);
+            color: #6b7280;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            z-index: 3;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-roboto">
@@ -125,7 +136,8 @@
             <p>As reuniões ocorrem toda terça-feira e quinta-feira, com duração de 1 hora.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in" id="tasksContainer">
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Cintia">
+            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Cintia">
+                <div class="project-number">Projeto #1</div>
                 <div class="zoom-background bg-gray-100"></div>
                 <div class="task-content">
                     <div class="flex flex-col items-center mb-6">
@@ -144,7 +156,8 @@
                     </div>
                 </div>
             </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900" data-person="Cintia">
+            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Cintia">
+                <div class="project-number">Projeto #2</div>
                 <div class="zoom-background bg-gray-100"></div>
                 <div class="task-content">
                     <div class="flex flex-col items-center mb-6">
