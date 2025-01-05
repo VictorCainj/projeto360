@@ -30,32 +30,6 @@
                 opacity: 0;
             }
         }
-        .slide-in-left {
-            animation: slideInLeft 0.5s ease-in-out forwards;
-        }
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        .slide-in-right {
-            animation: slideInRight 0.5s ease-in-out forwards;
-        }
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
         .navbar {
             background-color: #7b1c1c;
             color: white;
@@ -63,17 +37,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .navbar a {
             color: white;
             text-decoration: none;
             font-weight: bold;
             margin: 0 1rem;
-            transition: color 0.3s;
-        }
-        .navbar a:hover {
-            color: #ffcccb;
         }
         .navbar img {
             height: 40px;
@@ -84,6 +53,7 @@
             text-align: center;
             padding: 1rem;
             margin-top: 2rem;
+            width: 100%;
         }
     </style>
 </head>
@@ -91,8 +61,8 @@
     <div class="navbar">
         <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" alt="Logo da Madia Imóveis 40 anos">
         <div>
-            <a href="index.html"><i class="fas fa-calendar-alt mr-2"></i>Projetos</a>
-            <a href="sobre-nos.html"><i class="fas fa-info-circle mr-2"></i>Sobre Nós</a>
+            <a href="Reuniões.html"><i class="fas fa-calendar-alt mr-2"></i>Reuniões</a>
+            <a href="Sobre Nós.html"><i class="fas fa-info-circle mr-2"></i>Sobre Nós</a>
         </div>
     </div>
     <div class="container mx-auto p-6">
@@ -100,10 +70,10 @@
             <h1 class="text-4xl font-bold text-red-900 text-center">Projeto 360</h1>
         </header>
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-red-900 text-center mb-6 slide-in-left">Sobre Nós</h2>
+            <h2 class="text-3xl font-bold text-red-900 text-center mb-6">Sobre Nós</h2>
             <div class="flex flex-col md:flex-row items-center justify-center">
-                <img src="https://i.ibb.co/xq2YPbG/LOCAL-MADIA.webp" alt="Imagem do local de trabalho da Madia Imóveis, mostrando um ambiente moderno e bem iluminado" class="w-full md:w-1/2 rounded-lg shadow-lg mb-6 md:mb-0 md:mr-6 slide-in-left">
-                <div class="text-lg text-gray-800 slide-in-right">
+                <img src="https://i.ibb.co/xq2YPbG/LOCAL-MADIA.webp" alt="Imagem do local de trabalho da Madia Imóveis, mostrando um ambiente moderno e bem iluminado" class="w-full md:w-1/2 rounded-lg shadow-lg mb-6 md:mb-0 md:mr-6">
+                <div class="text-lg text-gray-800">
                     <p class="mb-4">A Madia Imóveis é uma empresa com mais de 40 anos de experiência no mercado imobiliário, oferecendo serviços de alta qualidade e atendimento personalizado aos nossos clientes.</p>
                     <p class="mb-4">Nosso escritório está localizado em um ambiente moderno e acolhedor, projetado para proporcionar conforto e eficiência no atendimento. Contamos com uma equipe de profissionais altamente qualificados e prontos para ajudar você a encontrar o imóvel dos seus sonhos.</p>
                     <p class="mb-4">Estamos comprometidos com a inovação e a melhoria contínua de nossos processos, sempre buscando as melhores soluções para atender às necessidades de nossos clientes e parceiros.</p>
