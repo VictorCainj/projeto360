@@ -114,7 +114,9 @@
             background-color: #7b1c1c;
             color: white;
             padding: 1rem;
-            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .navbar a {
             color: white;
@@ -122,12 +124,18 @@
             font-weight: bold;
             margin: 0 1rem;
         }
+        .navbar img {
+            height: 40px;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-roboto">
     <div class="navbar">
-        <a href="reuniao.html"><i class="fas fa-calendar-alt mr-2"></i>Reuniões</a>
-        <a href="sobre-nos.html"><i class="fas fa-info-circle mr-2"></i>Sobre Nós</a>
+        <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" alt="Logo da Madia Imóveis 40 anos">
+        <div>
+            <a href="reuniao.html"><i class="fas fa-calendar-alt mr-2"></i>Reuniões</a>
+            <a href="sobre-nos.html"><i class="fas fa-info-circle mr-2"></i>Sobre Nós</a>
+        </div>
     </div>
     <div class="container mx-auto p-6">
         <header class="mb-12 flex flex-col justify-center items-center fade-in">
@@ -193,16 +201,7 @@
         </footer>
     </div>
     <script>
-        const meetingData = {
-            '15/01/2025': 'Hello World',
-            '22/12/2024': 'Hello World'
-        };
-
         const selectPerson = document.getElementById('selectPerson');
-        const meetingDescription = document.getElementById('meetingDescription');
-        const meetingDetails = document.getElementById('meetingDetails');
-        const meetingTitle = document.getElementById('meetingTitle');
-        const reminder = document.getElementById('reminder');
         const tasksContainer = document.getElementById('tasksContainer');
 
         selectPerson.addEventListener('change', function() {
@@ -211,10 +210,6 @@
                 task.style.display = selectedPerson === '' || task.getAttribute('data-person') === selectedPerson ? 'block' : 'none';
             });
         });
-
-        setTimeout(() => {
-            reminder.classList.add('hidden');
-        }, 5000);
     </script>
 </body>
 </html>
