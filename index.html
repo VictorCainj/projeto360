@@ -1,4 +1,4 @@
-<html lang="pt-BR">
+<html lang="pt-BR"></html>
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -144,6 +144,7 @@
                 <select class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4" id="selectPerson">
                     <option value="">Selecione um nome...</option>
                     <option value="Cintia">Cintia</option>
+                    <option value="Victor">Victor</option>                    
                 </select>
             </div>
         </header>
@@ -196,6 +197,27 @@
                 </div>
             </div>
         </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in" id="tasksContainer">
+          <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Victor">
+              <div class="project-number">Projeto #3</div>
+              <div class="zoom-background bg-gray-100"></div>
+              <div class="task-content">
+                  <div class="flex flex-col items-center mb-6">
+                      <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Supervisão</span>
+                      <img alt="Imagem de perfil de Victor sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
+                      <div class="text-center">
+                          <h2 class="text-2xl font-bold text-red-900 mb-2"><i class="fas fa-user mr-2"></i>Hello World</h2>
+                          <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Hello World</p>
+                      </div>
+                  </div>
+                  <p class="mb-6 text-center text-lg font-semibold text-gray-600"><span class="font-bold text-gray-800"><i class="fas fa-info-circle mr-2"></i>Descrição:</span> Hello World</p>
+                  <div class="text-center">
+                      <a class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300" href="ProjetoVictor1" target="_blank">
+                          <i class="fas fa-check mr-2"></i>Projeto Disponível
+                      </a>
+                  </div>
+              </div>
+          </div>        
         <footer class="mt-12 text-center text-gray-600 fade-in">
             <p>© 2025 Todos os direitos reservados. Projeto 360.</p>
         </footer>
