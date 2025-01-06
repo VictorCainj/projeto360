@@ -1,0 +1,155 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Projeto 360</title>
+    <link href="https://i.imgur.com/qQIZtc2.png" rel="icon" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .fade-out {
+            animation: fadeOut 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        .text-muted {
+            color: #6b7280;
+        }
+        .navbar {
+            background-color: #7b1c1c;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 1rem;
+        }
+        .navbar img {
+            height: 40px;
+        }
+        .footer {
+            background-color: #7b1c1c;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .document-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            margin: 1rem;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+        }
+        .document-card:hover {
+            background-color: #e5e7eb;
+            transform: translateY(-5px);
+        }
+        .document-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+        }
+        .document-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .document-card a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s;
+        }
+        .document-card a:hover {
+            background-color: #2563eb;
+        }
+        .document-card a i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-roboto">
+    <div class="navbar">
+        <img alt="Logo da Madia Imóveis 40 anos" src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp"/>
+        <div>
+            <a href="index.html"><i class="fas fa-calendar-alt mr-2"></i>Projetos</a>
+            <a href="Reuniões.html"><i class="fas fa-info-circle mr-2"></i>Reuniões</a>
+            <a href="Sobre Nós.html"><i class="fas fa-info-circle mr-2"></i>Sobre</a>
+			<a href="Pdfs.html"><i class="fas fa-info-circle mr-2"></i>PDFs</a>
+        </div>
+    </div>
+    <div class="container mx-auto p-6">
+        <header class="mb-12 flex flex-col justify-center items-center fade-in">
+            <h1 class="text-4xl font-bold text-red-900 text-center">Projeto 360</h1>
+        </header>
+        <div class="mb-12 text-center">
+            <h2 class="text-2xl font-bold text-red-900 mb-4">Documentos</h2>
+            <div class="flex flex-wrap justify-center">
+                <div class="document-card">
+                    <img alt="Capa do PDF do Relatório Anual" height="100" src="https://storage.googleapis.com/a1aa/image/NNNLzHxP8Rq4MhjuEZHjICqbeFavFJAGRs5XaMQEugAkvHBKA.jpg" width="100"/>
+                    <h3>Relatório Anual</h3>
+                    <a href="Live 5 Segredos da Manutencao.pdf" target="_blank">
+                        <i class="fas fa-file-pdf text-red-600"></i>
+                        Visualizar PDF
+                    </a>
+                </div>
+                <div class="document-card">
+                    <img alt="Capa do PDF do Plano de Marketing" height="100" src="https://storage.googleapis.com/a1aa/image/WE4ZWC2yLmLdMNCVTpo5vXtsq37RWavFUekNltxPVBdlvHBKA.jpg" width="100"/>
+                    <h3>Plano de Marketing</h3>
+                    <a href="Procedimento - Administrativo de Locação.pdf" target="_blank">
+                        <i class="fas fa-file-pdf text-red-600"></i>
+                        Visualizar PDF
+                    </a>
+                </div>
+                <div class="document-card">
+                    <img alt="Capa do PDF da Análise de Mercado" height="100" src="https://storage.googleapis.com/a1aa/image/o7ezVULv6ek1xEzT1ed9IPxDX8rudC8gizZamD1502pYe9IQB.jpg" width="100"/>
+                    <h3>Análise de Mercado</h3>
+                    <a href="https://example.com/document3.pdf" target="_blank">
+                        <i class="fas fa-file-pdf text-red-600"></i>
+                        Visualizar PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; Todos os direitos reservados Projeto 360.</p>
+    </footer>
+</body>
+</html>
