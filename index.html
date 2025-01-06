@@ -36,6 +36,11 @@
             overflow: hidden;
             max-width: 350px;
             margin: auto;
+            background-color: #f3f4f6; /* Default background color */
+            transition: background-color 0.3s;
+        }
+        .task:hover {
+            background-color: #ffffff; /* Background color on hover */
         }
         .task-content {
             transition: filter 0.3s;
@@ -119,12 +124,39 @@
             margin-top: 2rem;
             width: 100%;
         }
+        .menu-button {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .menu-button {
+                display: block;
+            }
+            .navbar div {
+                display: none;
+            }
+            .navbar div.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #7b1c1c;
+                text-align: center;
+            }
+            .navbar div.active a {
+                display: block;
+                margin: 1rem 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-roboto">
     <div class="navbar">
         <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" alt="Logo da Madia Imóveis 40 anos">
-        <div>
+        <button class="menu-button text-white text-2xl focus:outline-none" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div id="menu">
             <a href="index.html"><i class="fas fa-calendar-alt mr-2"></i>Projetos</a>
             <a href="Reuniões.html"><i class="fas fa-info-circle mr-2"></i>Reuniões</a>
             <a href="Pdfs.html"><i class="fas fa-info-circle mr-2"></i>Pdfs</a>
@@ -137,36 +169,13 @@
             <div class="text-center mt-4">
                 <select class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4" id="selectPerson">
                     <option value="">Selecione um nome...</option>
-                    <option value="Cintia">Cintia</option>
                     <option value="Victor">Victor</option>
                     <option value="Gabi">Gabi</option>
-                    <option value="Lucas">Lucas</option>
-                    <option value="Ana">Ana</option>
                 </select>
             </div>
         </header>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in" id="tasksContainer">
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Cintia">
-                <div class="project-number">Projeto #1</div>
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Supervisão</span>
-                        <img alt="Imagem de perfil de Cintia sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2"><i class="fas fa-user mr-2"></i>Cintia</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Criar um perfil do locador e realizar uma análise de mercado mapeando a concorrência e traçando seus pontos fortes e fracos.</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-gray-600"><span class="font-bold text-gray-800"><i class="fas fa-info-circle mr-2"></i>Descrição:</span> Criar um perfil do locador e realizar uma análise de mercado mapeando a concorrência e traçando seus pontos fortes e fracos.</p>
-                    <div class="text-center">
-                        <a class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300" href="ProjetoCintia1" target="_blank">
-                            <i class="fas fa-check mr-2"></i>Projeto Disponível
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Victor">
+            <div class="task p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Victor">
                 <div class="project-number">Projeto #2</div>
                 <div class="zoom-background bg-gray-100"></div>
                 <div class="task-content">
@@ -186,7 +195,7 @@
                     </div>
                 </div>
             </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Gabi">
+            <div class="task p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Gabi">
                 <div class="project-number">Projeto #3</div>
                 <div class="zoom-background bg-gray-100"></div>
                 <div class="task-content">
@@ -206,46 +215,6 @@
                     </div>
                 </div>
             </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Lucas">
-                <div class="project-number">Projeto #4</div>
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Pesquisa</span>
-                        <img alt="Imagem de perfil de Lucas sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2"><i class="fas fa-user mr-2"></i>Lucas</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Pesquisa de Satisfação de Clientes</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-gray-600"><span class="font-bold text-gray-800"><i class="fas fa-info-circle mr-2"></i>Descrição:</span> Conduzir uma pesquisa de satisfação com os clientes para identificar áreas de melhoria.</p>
-                    <div class="text-center">
-                        <a class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300" href="ProjetoLucas1" target="_blank">
-                            <i class="fas fa-check mr-2"></i>Projeto Disponível
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="task bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative" data-person="Ana">
-                <div class="project-number">Projeto #5</div>
-                <div class="zoom-background bg-gray-100"></div>
-                <div class="task-content">
-                    <div class="flex flex-col items-center mb-6">
-                        <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Marketing</span>
-                        <img alt="Imagem de perfil de Ana sorrindo" class="w-20 h-20 rounded-full mb-4" height="100" src="https://i.imgur.com/vSVz0wY.jpeg" width="100"/>
-                        <div class="text-center">
-                            <h2 class="text-2xl font-bold text-red-900 mb-2"><i class="fas fa-user mr-2"></i>Ana</h2>
-                            <p class="text-muted mt-2"><span class="font-bold text-gray-800"><i class="fas fa-project-diagram mr-2"></i>Projeto:</span> Campanha de Marketing Digital</p>
-                        </div>
-                    </div>
-                    <p class="mb-6 text-center text-lg font-semibold text-gray-600"><span class="font-bold text-gray-800"><i class="fas fa-info-circle mr-2"></i>Descrição:</span> Desenvolver e implementar uma campanha de marketing digital para aumentar a visibilidade da empresa.</p>
-                    <div class="text-center">
-                        <a class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300" href="ProjetoAna1" target="_blank">
-                            <i class="fas fa-check mr-2"></i>Projeto Disponível
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <footer class="footer">
@@ -254,6 +223,8 @@
     <script>
         const selectPerson = document.getElementById('selectPerson');
         const tasksContainer = document.getElementById('tasksContainer');
+        const menuButton = document.querySelector('.menu-button');
+        const menu = document.getElementById('menu');
 
         selectPerson.addEventListener('change', function() {
             const selectedPerson = this.value;
@@ -261,6 +232,10 @@
                 task.style.display = selectedPerson === '' || task.getAttribute('data-person') === selectedPerson ? 'block' : 'none';
             });
         });
+
+        function toggleMenu() {
+            menu.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
