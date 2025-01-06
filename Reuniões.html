@@ -30,46 +30,19 @@
                 opacity: 0;
             }
         }
-        .navbar {
-            background-color: #7b1c1c;
-            color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 1rem;
-        }
-        .navbar img {
-            height: 40px;
-        }
-        .footer {
-            background-color: #7b1c1c;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-        }
     </style>
 </head>
-<body class="bg-gray-100 font-roboto">
-    <div class="navbar">
-        <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" alt="Logo da Madia Imóveis 40 anos">
+<body class="bg-gray-100 font-roboto flex flex-col min-h-screen">
+    <div class="bg-red-900 text-white p-4 flex justify-between items-center">
+        <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" alt="Logo da Madia Imóveis 40 anos" class="h-10">
         <div>
-            <a href="index.html"><i class="fas fa-calendar-alt mr-2"></i>Projetos</a>
-            <a href="Reuniões.html"><i class="fas fa-info-circle mr-2"></i>Reuniões</a>
-            <a href="Pdfs.html"><i class="fas fa-info-circle mr-2"></i>Pdfs</a>
-            <a href="Sobre Nós.html"><i class="fas fa-info-circle mr-2"></i>Sobre</a>
+            <a href="index.html" class="text-white font-bold mx-2"><i class="fas fa-calendar-alt mr-2"></i>Projetos</a>
+            <a href="Reuniões.html" class="text-white font-bold mx-2"><i class="fas fa-info-circle mr-2"></i>Reuniões</a>
+            <a href="Pdfs.html" class="text-white font-bold mx-2"><i class="fas fa-info-circle mr-2"></i>Pdfs</a>
+            <a href="Sobre Nós.html" class="text-white font-bold mx-2"><i class="fas fa-info-circle mr-2"></i>Sobre</a>
         </div>
     </div>
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-6 flex-grow">
         <header class="mb-12 flex flex-col justify-center items-center fade-in">
             <h1 class="text-4xl font-bold text-red-900 text-center">Projeto 360</h1>
         </header>
@@ -77,18 +50,17 @@
             <h2 class="text-3xl font-bold text-red-900 text-center mb-6">Reuniões</h2>
             <div class="text-center mt-4">
                 <select class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4" id="selectMeeting">
-                    <option value="">Selecione uma reunião...</option>
-                    <option value="15/01/2025">Reunião dia 15/01/2025</option>
                     <option value="22/12/2024">Reunião dia 22/12/2024</option>
+                    <option value="15/01/2025">Reunião dia 15/01/2025</option>
                 </select>
             </div>
-            <div id="meetingDescription" class="meeting-description hidden mb-12 text-center text-lg font-semibold text-gray-800 bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-900">
+            <div id="meetingDescription" class="meeting-description mb-12 text-center text-lg font-semibold text-gray-800 bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-900">
                 <h3 id="meetingTitle" class="text-2xl font-bold text-red-900 mb-4"></h3>
                 <div id="meetingDetails" class="text-base text-gray-600 mt-2 text-center"></div>
             </div>
         </section>
     </div>
-    <footer class="footer">
+    <footer class="bg-red-900 text-white text-center p-4 mt-auto">
         <p>&copy; Todos os direitos reservados Projeto 360.</p>
     </footer>
     <script>
@@ -122,18 +94,27 @@
         const meetingDetails = document.getElementById('meetingDetails');
         const meetingTitle = document.getElementById('meetingTitle');
 
+        function updateMeetingDetails(meetingDate) {
+            meetingTitle.textContent = `Reunião dia ${meetingDate}`;
+            meetingDetails.innerHTML = meetingData[meetingDate];
+        }
+
         selectMeeting.addEventListener('change', function() {
             const selectedMeeting = this.value;
             if (selectedMeeting) {
                 meetingDescription.classList.remove('hidden');
                 meetingDescription.classList.add('visible');
-                meetingTitle.textContent = `Reunião dia ${selectedMeeting}`;
-                meetingDetails.innerHTML = meetingData[selectedMeeting];
+                updateMeetingDetails(selectedMeeting);
             } else {
                 meetingDescription.classList.remove('visible');
                 meetingDescription.classList.add('hidden');
             }
         });
+
+        // Set the most recent meeting as selected by default
+        const mostRecentMeeting = '15/01/2025';
+        selectMeeting.value = mostRecentMeeting;
+        updateMeetingDetails(mostRecentMeeting);
     </script>
 </body>
 </html>
