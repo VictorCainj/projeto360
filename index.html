@@ -11,9 +11,6 @@
         .fade-in {
             animation: fadeIn 0.5s ease-in-out forwards;
         }
-        .fade-out {
-            animation: fadeOut 0.5s ease-in-out forwards;
-        }
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -22,25 +19,17 @@
                 opacity: 1;
             }
         }
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
         .task {
             perspective: 1000px;
             position: relative;
             overflow: hidden;
             max-width: 350px;
             margin: auto;
-            background-color: #f3f4f6; /* Default background color */
+            background-color: #f3f4f6;
             transition: background-color 0.3s;
         }
         .task:hover {
-            background-color: #ffffff; /* Background color on hover */
+            background-color: #ffffff;
         }
         .task-content {
             transition: filter 0.3s;
@@ -63,30 +52,6 @@
         }
         .text-muted {
             color: #6b7280;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 10; /* Ensure it overlays other content */
-            top: 125%; /* Position the tooltip below the text */
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
         }
         .project-number {
             position: absolute;
@@ -124,9 +89,6 @@
             margin-top: 2rem;
             width: 100%;
         }
-        .menu-button {
-            display: none;
-        }
         @media (max-width: 768px) {
             .menu-button {
                 display: block;
@@ -153,14 +115,9 @@
 <body class="bg-gray-100 font-roboto">
     <div class="navbar">
         <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" alt="Logo da Madia Imóveis 40 anos">
-        <button class="menu-button text-white text-2xl focus:outline-none" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
-        <div id="menu">
+        <div class="flex">
             <a href="index.html"><i class="fas fa-calendar-alt mr-2"></i>Projetos</a>
             <a href="Reuniões.html"><i class="fas fa-info-circle mr-2"></i>Reuniões</a>
-            <a href="Pdfs.html"><i class="fas fa-info-circle mr-2"></i>Pdfs</a>
-            <a href="Sobre Nós.html"><i class="fas fa-info-circle mr-2"></i>Sobre</a>
         </div>
     </div>
     <div class="container mx-auto p-6">
@@ -223,8 +180,6 @@
     <script>
         const selectPerson = document.getElementById('selectPerson');
         const tasksContainer = document.getElementById('tasksContainer');
-        const menuButton = document.querySelector('.menu-button');
-        const menu = document.getElementById('menu');
 
         selectPerson.addEventListener('change', function() {
             const selectedPerson = this.value;
@@ -232,10 +187,6 @@
                 task.style.display = selectedPerson === '' || task.getAttribute('data-person') === selectedPerson ? 'block' : 'none';
             });
         });
-
-        function toggleMenu() {
-            menu.classList.toggle('active');
-        }
     </script>
 </body>
 </html>
