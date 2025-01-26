@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Projeto 360 - Sistema de Gestão de Projetos da Madia Imóveis"/>
     <meta name="author" content="VictorCainj"/>
+    <meta name="version" content="2.0.0"/>
+    <meta name="last-modified" content="2025-01-26 02:32:31"/>
+    
     <title>Projeto 360 | Madia Imóveis</title>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style"/>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style"/>
+    
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     
     <!-- Favicon -->
     <link rel="icon" href="https://i.imgur.com/qQIZtc2.png" type="image/png"/>
@@ -26,9 +34,39 @@
             --secondary-color: #f3f4f6;
             --text-muted: #6b7280;
             --transition-duration: 0.3s;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Animations */
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background-color: var(--secondary-color);
+            overflow-x: hidden;
+        }
+
+        /* Utilitários */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -41,13 +79,15 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-md);
         }
 
         .content {
             min-height: calc(100vh - 8rem);
-            padding-bottom: 4rem;
+            padding: 2rem 1rem 4rem;
             position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Card Components */
@@ -55,13 +95,15 @@
             position: relative;
             max-width: 350px;
             margin: auto;
-            background-color: var(--secondary-color);
-            transition: all 0.3s ease;
+            background-color: white;
+            border-radius: 0.5rem;
+            transition: all var(--transition-duration) ease;
+            box-shadow: var(--shadow-sm);
         }
 
         .task:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-lg);
         }
 
         .project-number {
@@ -73,11 +115,11 @@
             font-weight: 500;
         }
 
-        /* Focus Mode Styles */
+        /* Focus Mode */
         .focus-mode .task:not(:hover) {
-            filter: blur(3px) grayscale(100%);
+            filter: blur(2px) grayscale(50%);
             opacity: 0.7;
-            transform: scale(0.95);
+            transform: scale(0.98);
         }
 
         .focus-mode .task {
@@ -87,12 +129,12 @@
         .focus-mode .task:hover {
             filter: blur(0) grayscale(0);
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.02);
             z-index: 10;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Focus Mode Toggle Button */
+        /* Componentes de Interface */
         .focus-mode-toggle {
             position: fixed;
             bottom: 2rem;
@@ -107,62 +149,87 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-md);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
         .focus-mode-toggle:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         .focus-mode-toggle.active {
             background: #2d3748;
         }
 
-        /* Current Time Display */
-        .current-time {
+        /* Status Components */
+        .status-display {
             position: fixed;
             top: 1rem;
             right: 1rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .status-item {
             background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
-            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* User Info */
-        .user-info {
+        /* Notifications */
+        .notification {
             position: fixed;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            z-index: 1000;
+            top: 20px;
+            right: 20px;
+            padding: 1rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: var(--shadow-md);
+            z-index: 1100;
+            max-width: 400px;
+            transform-origin: top right;
         }
 
-        /* Responsive Design */
+        .notification-success { background-color: #10B981; color: white; }
+        .notification-error { background-color: #EF4444; color: white; }
+        .notification-warning { background-color: #F59E0B; color: white; }
+        .notification-info { background-color: #3B82F6; color: white; }
+
+        /* Responsividade */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
+            .content {
+                padding: 1rem;
             }
 
             .task {
                 max-width: 100%;
             }
 
-            .current-time,
-            .user-info {
+            .status-display {
                 position: static;
-                margin: 0.5rem;
-                text-align: center;
+                padding: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .focus-mode-toggle {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .notification {
+                width: 90%;
+                top: auto;
+                bottom: 20px;
+                right: 5%;
             }
         }
 
@@ -171,44 +238,45 @@
             .navbar,
             .footer,
             .focus-mode-toggle,
-            .current-time,
-            .user-info {
+            .status-display {
                 display: none;
             }
 
             .content {
                 padding: 0;
             }
-        }
 
-        .ripple {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
+            .task {
+                break-inside: avoid;
+                page-break-inside: avoid;
             }
         }
     </style>
 </head>
 <body class="bg-gray-100 font-roboto">
-    <!-- Current Time and User Info -->
-    <div class="current-time animate__animated animate__fadeIn">
-        UTC: 2025-01-26 02:25:51
-    </div>
-    <div class="user-info animate__animated animate__fadeIn">
-        Usuário: VictorCainj
+    <!-- Status Display -->
+    <div class="status-display">
+        <div class="status-item current-time animate__animated animate__fadeIn" id="timeDisplay">
+            <i class="fas fa-clock"></i>
+            <span>UTC: 2025-01-26 02:33:31</span>
+        </div>
+        <div class="status-item user-info animate__animated animate__fadeIn">
+            <i class="fas fa-user"></i>
+            <span>VictorCainj</span>
+        </div>
+        <div class="status-item connection-status animate__animated animate__fadeIn" id="connectionStatus">
+            <i class="fas fa-wifi"></i>
+            <span>Conectado</span>
+        </div>
     </div>
 
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="visually-hidden focus:not-visually-hidden">
+        Pular para o conteúdo principal
+    </a>
+
     <!-- Navigation -->
-    <nav class="navbar flex justify-between items-center text-white">
+    <nav class="navbar flex justify-between items-center text-white" role="navigation">
         <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" 
              alt="Logo da Madia Imóveis 40 anos"
              width="160"
@@ -227,21 +295,25 @@
     </nav>
 
     <!-- Main Content -->
-    <main id="main-content" class="content container mx-auto p-6">
+    <main id="main-content" class="content" role="main">
         <header class="mb-12 animate__animated animate__fadeIn">
-            <h1 class="text-4xl font-bold text-red-900 text-center">Projeto 360</h1>
-            <div class="flex justify-center mt-4">
-                <select id="selectPerson" 
-                        class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4 focus:ring-2 focus:ring-red-900 focus:border-red-900"
-                        aria-label="Filtrar projetos por pessoa">
-                    <option value="">Selecione um nome...</option>
-                    <option value="Victor">Victor</option>
-                    <option value="Gabi">Gabi</option>
-                </select>
+            <h1 class="text-4xl font-bold text-red-900 text-center mb-6">Projeto 360</h1>
+            <div class="flex justify-center">
+                <div class="w-full md:w-64">
+                    <label for="selectPerson" class="block text-sm font-medium text-gray-700 mb-2">
+                        Filtrar por pessoa
+                    </label>
+                    <select id="selectPerson" 
+                            class="w-full p-3 border border-gray-300 rounded mb-4 focus:ring-2 focus:ring-red-900 focus:border-red-900"
+                            aria-label="Filtrar projetos por pessoa">
+                        <option value="">Todos os projetos</option>
+                        <option value="Victor">Victor</option>
+                        <option value="Gabi">Gabi</option>
+                    </select>
+                </div>
             </div>
         </header>
 
-        <!-- Project Cards Container -->
         <div id="tasksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Victor's Project Card -->
             <div class="task p-6 rounded-lg shadow-lg border-t-4 border-red-900 relative animate__animated animate__fadeIn" data-person="Victor">
@@ -252,14 +324,15 @@
                          class="w-20 h-20 rounded-full mb-4" 
                          src="https://i.imgur.com/vSVz0wY.jpeg" 
                          width="80" 
-                         height="80"/>
+                         height="80"
+                         loading="lazy"/>
                     <div class="text-center">
                         <h2 class="text-2xl font-bold text-red-900 mb-2">
-                            <i class="fas fa-user mr-2"></i>Victor
+                            <i class="fas fa-user mr-2" aria-hidden="true"></i>Victor
                         </h2>
                         <p class="text-muted mt-2">
                             <span class="font-bold text-gray-800">
-                                <i class="fas fa-project-diagram mr-2"></i>Projeto:
+                                <i class="fas fa-project-diagram mr-2" aria-hidden="true"></i>Projeto:
                             </span> 
                             Blog Interativo da Imobiliária
                         </p>
@@ -267,13 +340,13 @@
                 </div>
                 <p class="mb-6 text-center text-lg font-semibold text-gray-600">
                     <span class="font-bold text-gray-800">
-                        <i class="fas fa-info-circle mr-2"></i>Descrição:
+                        <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>Descrição:
                     </span> 
                     Manutenção e atualização do blog interativo da imobiliária.
                 </p>
                 <div class="text-center">
                     <button class="text-white bg-red-600 font-bold py-2 px-4 rounded hover:bg-red-500 transition-colors duration-300">
-                        <i class="fas fa-ban mr-2"></i>Projeto Indisponível
+                        <i class="fas fa-ban mr-2" aria-hidden="true"></i>Projeto Indisponível
                     </button>
                 </div>
             </div>
@@ -287,14 +360,15 @@
                          class="w-20 h-20 rounded-full mb-4" 
                          src="https://i.imgur.com/vSVz0wY.jpeg" 
                          width="80" 
-                         height="80"/>
+                         height="80"
+                         loading="lazy"/>
                     <div class="text-center">
                         <h2 class="text-2xl font-bold text-red-900 mb-2">
-                            <i class="fas fa-user mr-2"></i>Gabi
+                            <i class="fas fa-user mr-2" aria-hidden="true"></i>Gabi
                         </h2>
                         <p class="text-muted mt-2">
                             <span class="font-bold text-gray-800">
-                                <i class="fas fa-project-diagram mr-2"></i>Projeto:
+                                <i class="fas fa-project-diagram mr-2" aria-hidden="true"></i>Projeto:
                             </span> 
                             Sistema de Gestão de Locadores
                         </p>
@@ -302,13 +376,13 @@
                 </div>
                 <p class="mb-6 text-center text-lg font-semibold text-gray-600">
                     <span class="font-bold text-gray-800">
-                        <i class="fas fa-info-circle mr-2"></i>Descrição:
+                        <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>Descrição:
                     </span> 
                     Desenvolvimento de um sistema de gestão para locadores.
                 </p>
                 <div class="text-center">
                     <a href="ProjetoGabi1" class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300">
-                        <i class="fas fa-check mr-2"></i>Projeto Disponível
+                        <i class="fas fa-check mr-2" aria-hidden="true"></i>Projeto Disponível
                     </a>
                 </div>
             </div>
@@ -316,195 +390,19 @@
     </main>
 
     <!-- Focus Mode Toggle Button -->
-    <button class="focus-mode-toggle animate__animated animate__fadeIn" id="focusModeToggle" aria-label="Alternar modo foco">
-        <i class="fas fa-eye"></i>
+    <button class="focus-mode-toggle animate__animated animate__fadeIn" 
+            id="focusModeToggle" 
+            aria-label="Alternar modo foco"
+            title="Alternar modo foco">
+        <i class="fas fa-eye" aria-hidden="true"></i>
     </button>
 
     <!-- Footer -->
-    <footer class="footer bg-red-900 text-white p-4 text-center">
+    <footer class="footer bg-red-900 text-white p-4 text-center" role="contentinfo">
         <p>&copy; <span id="currentYear"></span> Projeto 360. Todos os direitos reservados.</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                initializeComponents();
-                initializeFocusMode();
-                startTimeUpdate();
-                setupAnimations();
-            } catch (error) {
-                console.error('Erro ao inicializar a aplicação:', error);
-            }
-        });
-
-        function initializeComponents() {
-            initializeFilter();
-            updateCopyright();
-            setupRippleEffect();
-        }
-
-        function initializeFilter() {
-            const selectPerson = document.getElementById('selectPerson');
-            const tasksContainer = document.getElementById('tasksContainer');
-
-            selectPerson?.addEventListener('change', () => {
-                const selectedPerson = selectPerson.value;
-                
-                document.querySelectorAll('.task').forEach(task => {
-                    const isVisible = !selectedPerson || task.dataset.person === selectedPerson;
-                    const animation = isVisible ? 'animate__fadeIn' : 'animate__fadeOut';
-                    
-                    task.classList.remove('animate__fadeIn', 'animate__fadeOut');
-                    void task.offsetWidth;
-                    task.classList.add('animate__animated', animation);
-                    
-                    setTimeout(() => {
-                        task.style.display = isVisible ? 'block' : 'none';
-                    }, isVisible ? 0 : 500);
-                });
-            });
-        }
-
-function initializeFocusMode() {
-            const focusModeToggle = document.getElementById('focusModeToggle');
-            const body = document.body;
-            let isFocusMode = false;
-
-            focusModeToggle?.addEventListener('click', () => {
-                isFocusMode = !isFocusMode;
-                body.classList.toggle('focus-mode');
-                focusModeToggle.classList.toggle('active');
-                
-                // Anima o botão
-                focusModeToggle.classList.remove('animate__fadeIn');
-                void focusModeToggle.offsetWidth;
-                focusModeToggle.classList.add('animate__animated', 
-                    isFocusMode ? 'animate__pulse' : 'animate__fadeIn');
-
-                // Atualiza o ícone e tooltip
-                focusModeToggle.innerHTML = `<i class="fas fa-${isFocusMode ? 'eye-slash' : 'eye'}"></i>`;
-                focusModeToggle.setAttribute('aria-label', 
-                    `${isFocusMode ? 'Desativar' : 'Ativar'} modo foco`);
-            });
-        }
-
-        function startTimeUpdate() {
-            const timeDisplay = document.querySelector('.current-time');
-            
-            function updateTime() {
-                const now = new Date();
-                const utcString = now.toISOString().slice(0, 19).replace('T', ' ');
-                timeDisplay.textContent = `UTC: ${utcString}`;
-            }
-
-            updateTime();
-            setInterval(updateTime, 1000);
-        }
-
-        function setupAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.task').forEach(task => {
-                observer.observe(task);
-            });
-        }
-
-        function setupRippleEffect() {
-            document.querySelectorAll('button, a').forEach(element => {
-                element.addEventListener('click', createRipple);
-            });
-        }
-
-        function createRipple(event) {
-            const element = event.currentTarget;
-
-            // Não cria efeito ripple em links externos
-            if (element.tagName === 'A' && element.getAttribute('href')?.startsWith('http')) {
-                return;
-            }
-
-            const circle = document.createElement('span');
-            const diameter = Math.max(element.clientWidth, element.clientHeight);
-            const radius = diameter / 2;
-
-            const rect = element.getBoundingClientRect();
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - rect.left - radius}px`;
-            circle.style.top = `${event.clientY - rect.top - radius}px`;
-            circle.classList.add('ripple');
-
-            const ripple = element.getElementsByClassName('ripple')[0];
-            if (ripple) {
-                ripple.remove();
-            }
-
-            element.appendChild(circle);
-        }
-
-        function updateCopyright() {
-            const yearElement = document.getElementById('currentYear');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
-        }
-
-        // Tratamento de erros global
-        window.addEventListener('error', (event) => {
-            console.error('Erro capturado:', event.error);
-            showErrorNotification('Ocorreu um erro. Por favor, recarregue a página.');
-        });
-
-        function showErrorNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'error-notification animate__animated animate__fadeIn';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.classList.replace('animate__fadeIn', 'animate__fadeOut');
-                setTimeout(() => notification.remove(), 500);
-            }, 5000);
-        }
-
-        // Função para detectar navegador desatualizado
-        function checkBrowserSupport() {
-            const isModernBrowser = 'IntersectionObserver' in window && 
-                                  'requestAnimationFrame' in window &&
-                                  'classList' in document.createElement('div');
-
-            if (!isModernBrowser) {
-                showErrorNotification('Seu navegador pode estar desatualizado. Algumas funcionalidades podem não funcionar corretamente.');
-            }
-        }
-
-        // Verifica suporte do navegador ao carregar
-        checkBrowserSupport();
-    </script>
-
-    <!-- Estilo adicional para notificações -->
-    <style>
-        .error-notification {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ef4444;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1100;
-        }
-    </style>
+    <!-- Scripts -->
+    <script src="app.js" defer></script>
+</body>
+</html>
