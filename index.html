@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Projeto 360 - Sistema de Gestão de Projetos da Madia Imóveis"/>
     <meta name="author" content="VictorCainj"/>
-    <meta name="last-modified" content="2025-01-26 02:18:10 UTC"/>
-    
     <title>Projeto 360 | Madia Imóveis</title>
     
     <!-- Preload critical resources -->
@@ -36,23 +34,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes shine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
         /* Layout Components */
         .navbar {
             background-color: var(--primary-color);
@@ -71,23 +52,25 @@
 
         /* Card Components */
         .task {
-            perspective: 1000px;
             position: relative;
             max-width: 350px;
             margin: auto;
             background-color: var(--secondary-color);
-            transition: all var(--transition-duration) ease;
+            transition: all 0.3s ease;
         }
 
         .task:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .task-content {
-            position: relative;
-            z-index: 2;
-            backface-visibility: hidden;
+        .project-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* Focus Mode Styles */
@@ -164,21 +147,6 @@
             z-index: 1000;
         }
 
-        /* Accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px;
-            z-index: 1001;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
@@ -212,28 +180,40 @@
                 padding: 0;
             }
         }
+
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-roboto">
     <!-- Current Time and User Info -->
     <div class="current-time animate__animated animate__fadeIn">
-        UTC: 2025-01-26 02:18:10
+        UTC: 2025-01-26 02:25:51
     </div>
     <div class="user-info animate__animated animate__fadeIn">
         Usuário: VictorCainj
     </div>
 
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
-
     <!-- Navigation -->
-    <nav class="navbar flex justify-between items-center text-white animate__animated animate__slideInDown">
+    <nav class="navbar flex justify-between items-center text-white">
         <img src="https://i.ibb.co/R3dKTYr/Madia-Im-veis-40-anos.webp" 
              alt="Logo da Madia Imóveis 40 anos"
              width="160"
              height="40"
-             loading="eager"
-             class="animate__animated animate__fadeIn"/>
+             loading="eager"/>
         <div class="flex gap-4">
             <a href="index.html" class="hover:text-gray-200 transition-colors">
                 <i class="fas fa-calendar-alt mr-2" aria-hidden="true"></i>
@@ -251,7 +231,6 @@
         <header class="mb-12 animate__animated animate__fadeIn">
             <h1 class="text-4xl font-bold text-red-900 text-center">Projeto 360</h1>
             <div class="flex justify-center mt-4">
-                <label for="selectPerson" class="sr-only">Filtrar por pessoa</label>
                 <select id="selectPerson" 
                         class="w-full md:w-64 p-3 border border-gray-300 rounded mb-4 focus:ring-2 focus:ring-red-900 focus:border-red-900"
                         aria-label="Filtrar projetos por pessoa">
@@ -265,80 +244,72 @@
         <!-- Project Cards Container -->
         <div id="tasksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Victor's Project Card -->
-            <div class="task p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative animate__animated animate__fadeIn" data-person="Victor">
+            <div class="task p-6 rounded-lg shadow-lg border-t-4 border-red-900 relative animate__animated animate__fadeIn" data-person="Victor">
                 <div class="project-number">Projeto #2</div>
-                <div class="task-content parallax-container">
-                    <div class="parallax-content">
-                        <div class="flex flex-col items-center mb-6">
-                            <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 project-tag">Manutenção</span>
-                            <img alt="Imagem de perfil de Victor" 
-                                 class="w-20 h-20 rounded-full mb-4 profile-image" 
-                                 src="https://i.imgur.com/vSVz0wY.jpeg" 
-                                 width="80" 
-                                 height="80"/>
-                            <div class="text-center">
-                                <h2 class="text-2xl font-bold text-red-900 mb-2">
-                                    <i class="fas fa-user mr-2"></i>Victor
-                                </h2>
-                                <p class="text-muted mt-2">
-                                    <span class="font-bold text-gray-800">
-                                        <i class="fas fa-project-diagram mr-2"></i>Projeto:
-                                    </span> 
-                                    Blog Interativo da Imobiliária
-                                </p>
-                            </div>
-                        </div>
-                        <p class="mb-6 text-center text-lg font-semibold text-gray-600">
+                <div class="flex flex-col items-center mb-6">
+                    <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Manutenção</span>
+                    <img alt="Imagem de perfil de Victor" 
+                         class="w-20 h-20 rounded-full mb-4" 
+                         src="https://i.imgur.com/vSVz0wY.jpeg" 
+                         width="80" 
+                         height="80"/>
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-red-900 mb-2">
+                            <i class="fas fa-user mr-2"></i>Victor
+                        </h2>
+                        <p class="text-muted mt-2">
                             <span class="font-bold text-gray-800">
-                                <i class="fas fa-info-circle mr-2"></i>Descrição:
+                                <i class="fas fa-project-diagram mr-2"></i>Projeto:
                             </span> 
-                            Manutenção e atualização do blog interativo da imobiliária.
+                            Blog Interativo da Imobiliária
                         </p>
-                        <div class="text-center">
-                            <button class="text-white bg-red-600 font-bold py-2 px-4 rounded hover:bg-red-500 transition-colors duration-300">
-                                <i class="fas fa-ban mr-2"></i>Projeto Indisponível
-                            </button>
-                        </div>
                     </div>
+                </div>
+                <p class="mb-6 text-center text-lg font-semibold text-gray-600">
+                    <span class="font-bold text-gray-800">
+                        <i class="fas fa-info-circle mr-2"></i>Descrição:
+                    </span> 
+                    Manutenção e atualização do blog interativo da imobiliária.
+                </p>
+                <div class="text-center">
+                    <button class="text-white bg-red-600 font-bold py-2 px-4 rounded hover:bg-red-500 transition-colors duration-300">
+                        <i class="fas fa-ban mr-2"></i>Projeto Indisponível
+                    </button>
                 </div>
             </div>
 
             <!-- Gabi's Project Card -->
-            <div class="task p-6 rounded-lg shadow-lg hover:shadow-xl transform transition-transform duration-300 border-t-4 border-red-900 relative animate__animated animate__fadeIn" data-person="Gabi">
+            <div class="task p-6 rounded-lg shadow-lg border-t-4 border-red-900 relative animate__animated animate__fadeIn" data-person="Gabi">
                 <div class="project-number">Projeto #3</div>
-                <div class="task-content parallax-container">
-                    <div class="parallax-content">
-                        <div class="flex flex-col items-center mb-6">
-                            <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 project-tag">Desenvolvimento</span>
-                            <img alt="Imagem de perfil de Gabi" 
-                                 class="w-20 h-20 rounded-full mb-4 profile-image" 
-                                 src="https://i.imgur.com/vSVz0wY.jpeg" 
-                                 width="80" 
-                                 height="80"/>
-                            <div class="text-center">
-                                <h2 class="text-2xl font-bold text-red-900 mb-2">
-                                    <i class="fas fa-user mr-2"></i>Gabi
-                                </h2>
-                                <p class="text-muted mt-2">
-                                    <span class="font-bold text-gray-800">
-                                        <i class="fas fa-project-diagram mr-2"></i>Projeto:
-                                    </span> 
-                                    Sistema de Gestão de Locadores
-                                </p>
-                            </div>
-                        </div>
-                        <p class="mb-6 text-center text-lg font-semibold text-gray-600">
+                <div class="flex flex-col items-center mb-6">
+                    <span class="bg-red-900 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Desenvolvimento</span>
+                    <img alt="Imagem de perfil de Gabi" 
+                         class="w-20 h-20 rounded-full mb-4" 
+                         src="https://i.imgur.com/vSVz0wY.jpeg" 
+                         width="80" 
+                         height="80"/>
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-red-900 mb-2">
+                            <i class="fas fa-user mr-2"></i>Gabi
+                        </h2>
+                        <p class="text-muted mt-2">
                             <span class="font-bold text-gray-800">
-                                <i class="fas fa-info-circle mr-2"></i>Descrição:
+                                <i class="fas fa-project-diagram mr-2"></i>Projeto:
                             </span> 
-                            Desenvolvimento de um sistema de gestão para locadores.
+                            Sistema de Gestão de Locadores
                         </p>
-                        <div class="text-center">
-                            <a href="ProjetoGabi1" class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300">
-                                <i class="fas fa-check mr-2"></i>Projeto Disponível
-                            </a>
-                        </div>
                     </div>
+                </div>
+                <p class="mb-6 text-center text-lg font-semibold text-gray-600">
+                    <span class="font-bold text-gray-800">
+                        <i class="fas fa-info-circle mr-2"></i>Descrição:
+                    </span> 
+                    Desenvolvimento de um sistema de gestão para locadores.
+                </p>
+                <div class="text-center">
+                    <a href="ProjetoGabi1" class="text-white bg-green-600 font-bold py-2 px-4 rounded hover:bg-green-500 transition-colors duration-300">
+                        <i class="fas fa-check mr-2"></i>Projeto Disponível
+                    </a>
                 </div>
             </div>
         </div>
@@ -355,12 +326,10 @@
     </footer>
 
     <script>
-document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             try {
-                // Inicializa todos os componentes
                 initializeComponents();
                 initializeFocusMode();
-                initializeParallaxEffect();
                 startTimeUpdate();
                 setupAnimations();
             } catch (error) {
@@ -368,17 +337,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Inicialização dos componentes principais
         function initializeComponents() {
-            // Inicializa o filtro de seleção
             initializeFilter();
-            // Atualiza o ano no copyright
             updateCopyright();
-            // Adiciona efeito de ripple aos botões
             setupRippleEffect();
         }
 
-        // Configuração do filtro de seleção
         function initializeFilter() {
             const selectPerson = document.getElementById('selectPerson');
             const tasksContainer = document.getElementById('tasksContainer');
@@ -391,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const animation = isVisible ? 'animate__fadeIn' : 'animate__fadeOut';
                     
                     task.classList.remove('animate__fadeIn', 'animate__fadeOut');
-                    void task.offsetWidth; // Force reflow
+                    void task.offsetWidth;
                     task.classList.add('animate__animated', animation);
                     
                     setTimeout(() => {
@@ -401,8 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Configuração do modo foco
-        function initializeFocusMode() {
+function initializeFocusMode() {
             const focusModeToggle = document.getElementById('focusModeToggle');
             const body = document.body;
             let isFocusMode = false;
@@ -425,38 +388,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Efeito Parallax
-        function initializeParallaxEffect() {
-            document.querySelectorAll('.parallax-container').forEach(container => {
-                const content = container.querySelector('.parallax-content');
-                
-                container.addEventListener('mousemove', (e) => {
-                    if (!document.body.classList.contains('focus-mode')) {
-                        const rect = container.getBoundingClientRect();
-                        const x = (e.clientX - rect.left) / rect.width - 0.5;
-                        const y = (e.clientY - rect.top) / rect.height - 0.5;
-                        
-                        content.style.transform = `
-                            rotateY(${x * 10}deg)
-                            rotateX(${-y * 10}deg)
-                            translateZ(20px)
-                        `;
-                    }
-                });
-
-                container.addEventListener('mouseleave', () => {
-                    content.style.transform = 'none';
-                });
-            });
-        }
-
-        // Atualização do relógio
         function startTimeUpdate() {
             const timeDisplay = document.querySelector('.current-time');
             
             function updateTime() {
                 const now = new Date();
-                const utcString = now.toISOString().replace('T', ' ').substr(0, 19);
+                const utcString = now.toISOString().slice(0, 19).replace('T', ' ');
                 timeDisplay.textContent = `UTC: ${utcString}`;
             }
 
@@ -464,7 +401,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(updateTime, 1000);
         }
 
-        // Configuração de animações
         function setupAnimations() {
             const observerOptions = {
                 threshold: 0.1,
@@ -485,7 +421,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Efeito de ondulação (Ripple)
         function setupRippleEffect() {
             document.querySelectorAll('button, a').forEach(element => {
                 element.addEventListener('click', createRipple);
@@ -494,13 +429,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function createRipple(event) {
             const element = event.currentTarget;
+
+            // Não cria efeito ripple em links externos
+            if (element.tagName === 'A' && element.getAttribute('href')?.startsWith('http')) {
+                return;
+            }
+
             const circle = document.createElement('span');
             const diameter = Math.max(element.clientWidth, element.clientHeight);
             const radius = diameter / 2;
 
+            const rect = element.getBoundingClientRect();
             circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - element.offsetLeft - radius}px`;
-            circle.style.top = `${event.clientY - element.offsetTop - radius}px`;
+            circle.style.left = `${event.clientX - rect.left - radius}px`;
+            circle.style.top = `${event.clientY - rect.top - radius}px`;
             circle.classList.add('ripple');
 
             const ripple = element.getElementsByClassName('ripple')[0];
@@ -511,7 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
             element.appendChild(circle);
         }
 
-        // Atualização do copyright
         function updateCopyright() {
             const yearElement = document.getElementById('currentYear');
             if (yearElement) {
@@ -522,7 +463,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Tratamento de erros global
         window.addEventListener('error', (event) => {
             console.error('Erro capturado:', event.error);
-            // Aqui você pode adicionar uma notificação visual para o usuário
             showErrorNotification('Ocorreu um erro. Por favor, recarregue a página.');
         });
 
@@ -537,9 +477,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => notification.remove(), 500);
             }, 5000);
         }
+
+        // Função para detectar navegador desatualizado
+        function checkBrowserSupport() {
+            const isModernBrowser = 'IntersectionObserver' in window && 
+                                  'requestAnimationFrame' in window &&
+                                  'classList' in document.createElement('div');
+
+            if (!isModernBrowser) {
+                showErrorNotification('Seu navegador pode estar desatualizado. Algumas funcionalidades podem não funcionar corretamente.');
+            }
+        }
+
+        // Verifica suporte do navegador ao carregar
+        checkBrowserSupport();
     </script>
 
-    <!-- Estilo adicional para notificação de erro -->
+    <!-- Estilo adicional para notificações -->
     <style>
         .error-notification {
             position: fixed;
@@ -553,22 +507,4 @@ document.addEventListener('DOMContentLoaded', () => {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1100;
         }
-
-        .ripple {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
     </style>
-</body>
-</html>
